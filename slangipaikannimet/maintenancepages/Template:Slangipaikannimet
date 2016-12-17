@@ -1,0 +1,24 @@
+<includeonly><onlyinclude>== {{{expression}}} ==
+{|
+| {{INT:kotus-slangipaikannimet-template-slangipaikannimet-officialname}}
+| {{{official name|}}}
+|-
+| {{INT:kotus-slangipaikannimet-template-slangipaikannimet-location}}
+| {{{location|}}}
+|-
+| {{INT:kotus-slangipaikannimet-template-slangipaikannimet-example}}
+| {{{example|}}}
+|-
+| {{INT:kotus-slangipaikannimet-template-slangipaikannimet-comments}}
+| {{{comments|}}}
+|}{{#subobject:
+  |Slangipaikannimet:Has index={{{index}}}
+  |Slangipaikannimet:Has expression={{{expression}}}
+  |Slangipaikannimet:Has official name={{{official name|}}}
+  |Slangipaikannimet:Has location={{{location|}}}
+  |Slangipaikannimet:Has example={{{example|}}}
+  |Slangipaikannimet:Has comments={{{comments|}}}
+  |Slangipaikannimet:From school=Slangipaikannimet:{{{school}}}
+  |@category=Slangipaikannimet
+}}</onlyinclude></includeonly>
+[[Category:Slangipaikannimet maintenance]]

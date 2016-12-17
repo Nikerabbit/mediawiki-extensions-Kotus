@@ -1,0 +1,10 @@
+<includeonly><onlyinclude>{{#ask:
+  [[-Has subobject::{{FULLPAGENAME}}]]
+  |?Vepsä:Has expression
+  |mainlabel = -
+  |format = list
+  |link = none
+  |headers = hide
+  |default = ???
+}}</onlyinclude></includeonly>
+[[Category:Vepsä maintenance]]

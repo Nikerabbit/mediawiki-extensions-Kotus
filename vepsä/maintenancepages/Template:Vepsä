@@ -1,0 +1,29 @@
+<includeonly><onlyinclude>== <span id="{{{subid}}}">{{{expression|???}}}</span> {{{inflection|}}} ==
+{|
+| {{INT:kotus-vepsä-template-vepsä-meaning}}
+| {{{meaning|}}}
+|-
+| {{INT:kotus-vepsä-template-vepsä-locations}}
+| {{{locations|}}}
+|-
+| {{INT:kotus-vepsä-template-vepsä-example}}
+| {{{example|}}}
+|-
+| {{INT:kotus-vepsä-template-vepsä-info}}
+| {{{info|}}}
+|-
+| {{INT:kotus-vepsä-template-vepsä-notes}}
+| {{{notes|}}}
+|}{{#subobject:{{{subid}}}
+  |Vepsä:Has index={{{index}}}
+  |Vepsä:Has expression={{{expression|}}}
+  |Vepsä:Has inflection={{{inflection|}}}
+  |Vepsä:Has meaning={{{meaning|}}}
+  |Vepsä:Has location={{{locations/clean|{{{locations|}}}}}}|+sep=;
+  |Vepsä:Has location text={{{locations|}}}
+  |Vepsä:Has example={{{example|}}}
+  |Vepsä:Has info={{{info|}}}
+  |Vepsä:Has notes={{{notes|}}}
+  |@category=Vepsä
+}}{{DISPLAYTITLE:{{Vepsä/displaytitle}}}}</onlyinclude></includeonly>
+[[Category:Vepsä maintenance]]
