@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Niklas Laxström
+ */
 
 $IN = isset( $argv[1] ) ? $argv[1] : 'koulukeruu/html';
 $OUT = isset( $argv[2] ) ? $argv[2] : 'koulukeruu.json';

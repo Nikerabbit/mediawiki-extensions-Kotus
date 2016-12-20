@@ -9,8 +9,10 @@
 	"license-name": "GPL-2.0+",
 	"MessagesDirs": {
 		"Kotus": [
-			"vepsä/i18n",
-			"slangipaikannimet/i18n"
+			"kirjasanasto/i18n",
+			"slangipaikannimet/i18n",
+			"sosva/i18n",
+			"vepsä/i18n"
 		]
 	},
 	"manifest_version": 1

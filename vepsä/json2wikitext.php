@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Niklas Laxström
+ */
 
 function cleanupLocation( $original ) {
 	if ( trim( $original ) === '' ) {

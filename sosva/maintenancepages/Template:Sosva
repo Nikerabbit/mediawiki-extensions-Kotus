@@ -1,0 +1,12 @@
+<includeonly><onlyinclude>=== <span id="{{{id|{{{expression}}}}}}">{{{expression}}}<span> ===
+* ({{#language:de|en}}) {{{de|}}}
+* ({{#language:fi|en}}) {{{fi|}}}
+* {{INT:kotus-sosva-template-sosva-page}} {{{page|}}}{{#subobject:{{{id|{{{expression}}}}}}
+  |Sosva:Has index={{{index}}}
+  |Sosva:Has expression={{{expression|}}}
+  |Sosva:Has German translation={{{de|}}}
+  |Sosva:Has Finnish translation={{{fi|}}}
+  |Sosva:Has page={{{page|}}}
+  |@category=Sosva
+}}</onlyinclude></includeonly>
+[[Category:Sosva maintenance]]

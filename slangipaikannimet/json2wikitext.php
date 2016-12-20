@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Niklas Laxström
+ */
 
 function parseEntry( array $entry ) {
 	$index = mb_strtoupper( mb_substr( $entry[0], 0, 1 ) );
