@@ -58,6 +58,6 @@ function process( $IN, $OUT ) {
 			$contents .= formatEntry( $entry );
 		}
 
-		file_put_contents( "entrypages/$key", $contents );
+		file_put_contents( "$OUT/$key", $contents );
 	}
 }
