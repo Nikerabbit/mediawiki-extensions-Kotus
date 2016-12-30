@@ -2,11 +2,11 @@
 * ({{#language:de|en}}) {{{de|}}}
 * ({{#language:fi|en}}) {{{fi|}}}
 * {{INT:kotus-sosva-template-sosva-page}} {{{page|}}}{{#subobject:{{{id|{{{expression}}}}}}
-  |Sosva:Has index={{{index}}}
+  |Sosva:Has index={{PAGENAME}}
   |Sosva:Has expression={{{expression|}}}
   |Sosva:Has German translation={{{de|}}}
   |Sosva:Has Finnish translation={{{fi|}}}
-  |Sosva:Has page={{{page|}}}
+  |Sosva:Has page={{{page|}}}|+sep=,
   |@category=Sosva
 }}</onlyinclude></includeonly>
 [[Category:Sosva maintenance]]

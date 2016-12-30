@@ -12,7 +12,8 @@ function process( $IN, $OUT ) {
 
 	$all = parse( new SplFileObject( $IN ) );
 
-	file_put_contents( $OUT, json_encode( $all, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) );
+	$json = json_encode( $all, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+	file_put_contents( $OUT, $json );
 	echo "'_,_^\n";
 }
 
@@ -42,19 +43,23 @@ function parse( $lineIterator ) {
 		$line = str_replace( '{{anchor|GoBack}}', '', $line );
 		$line = str_replace( '<nowiki>', '', $line );
 		$line = str_replace( '</nowiki>', '', $line );
+		$line = str_replace( "''-''", '-', $line );
+		$line = str_replace( "'' ''", ' ', $line );
+		$line = preg_replace( "~''\(''(.*?)''\)~", '(\1)\'\'', $line );
 		$line = rtrim( $line, " '" );
 
 		if ( $line === '' ) {
 			continue;
 		}
 
-		$ps = "~^(\d )?''(.+)''(.+)/(.+)( \d+)$~u";
+		$ps = "~^(\d )?''([^']+)''(.+)/(.+?)( [0-9, ]+)$~u";
 		if ( !preg_match( $ps, $line, $match ) ) {
 			echo "Skipping: $line\n";
 			continue;
 		}
 
 		$expression = str_replace( "'", '', $match[2] );
+		$expression = $match[2];
 
 		$output[] = [
 			$index,

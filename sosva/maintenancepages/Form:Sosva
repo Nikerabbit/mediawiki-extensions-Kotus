@@ -1,0 +1,33 @@
+<noinclude>
+{{#forminput:form=Sosva}}
+[[Category:Sosva maintenance]]
+</noinclude><includeonly>
+<div id="wikiPreview" style="display: none; padding-bottom: 25px; margin-bottom: 25px; border-bottom: 1px solid #AAAAAA;"></div>
+{{{standard input|free text|hidden}}}
+
+{{{for template|Sosva|multiple}}}
+{| class="formtable"
+! Expression:
+| {{{field|expression}}}
+|-
+! De:
+| {{{field|de}}}
+|-
+! Fi:
+| {{{field|fi}}}
+|-
+! Pages:
+| {{{field|page}}}
+|-
+! Id:
+| {{{field|id}}}
+|}
+{{{end template}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</includeonly>
+

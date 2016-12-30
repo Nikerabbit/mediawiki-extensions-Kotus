@@ -13,15 +13,17 @@ function parseEntry( array $entry ) {
 
 	if ( $id ) {
 		$id = "$expression ($id)";
+	} elseif ( strpos( $expression, '.' ) !== false ) {
+		// SMW does not allow dots in the first five characters
+		$id = str_replace( '.', '_', $expression );
 	}
 
 	$values = [
 		'expression' => $expression,
-		'id' => $id,
-		'index' => $index,
 		'de' => $de,
 		'fi' => $fi,
 		'page' => $page,
+		'id' => $id,
 	];
 
 	$values = array_filter( $values );
@@ -51,7 +53,7 @@ function process( $IN, $OUT ) {
 	}
 
 	foreach ( $pages as $key => $entries ) {
-		$contents = "<div style=\"float:right\">__TOC__</div>\n";
+		$contents = "{{Sosva/header}}\n";
 		foreach ( $entries as $entry ) {
 			$contents .= formatEntry( $entry );
 		}
