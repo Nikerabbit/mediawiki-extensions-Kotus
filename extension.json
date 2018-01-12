@@ -9,6 +9,7 @@
 	"license-name": "GPL-2.0+",
 	"MessagesDirs": {
 		"Kotus": [
+			"evita/i18n",
 			"kirjasanasto/i18n",
 			"slangipaikannimet/i18n",
 			"sosva/i18n",

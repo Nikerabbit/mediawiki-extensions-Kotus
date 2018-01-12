@@ -1,0 +1,5 @@
+<includeonly><onlyinclude>* {{{ref}}}{{#if:{{{meaning|}}}|
+*: {{INT:kotus-evita-template-evita-meaning}} ''{{{meaning}}}'' }}{{#if:{{{note|}}}|
+*: {{INT:kotus-evita-template-evita-note}} {{{note}}} }}{{#if:{{{seealso|}}}|
+*: {{INT:kotus-evita-template-evita-seealso}} {{#arraymap:{{{seealso}}}|,|#|[[Evita:#|#]]}} }}{{#set:Evita:Has reference={{{ref_name|}}}}}</onlyinclude></includeonly>
+[[Category:Evita maintenance]]
