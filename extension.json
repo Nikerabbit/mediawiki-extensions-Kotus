@@ -6,7 +6,7 @@
 	],
 	"url": "https://github.com/Nikerabbit/mediawiki-extensions-Kotus",
 	"description": "Kotus data set tools",
-	"license-name": "GPL-2.0+",
+	"license-name": "GPL-2.0-or-later",
 	"MessagesDirs": {
 		"Kotus": [
 			"kirjasanasto/i18n",
