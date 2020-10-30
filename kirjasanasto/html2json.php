@@ -43,7 +43,7 @@ function parseHtml( $string ) {
 
 	$item = null;
 	foreach ( $matches as $match ) {
-		list( $line, $class, $content ) = $match;
+		list( , $class, $content ) = $match;
 
 		if ( $class === 'sisennys' ) {
 			list( $expression, $translation ) = explode( '* ', $content );

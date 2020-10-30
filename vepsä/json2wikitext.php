@@ -2,7 +2,7 @@
 /**
  * @author Niklas Laxström
  */
-
+// phpcs:ignore
 function cleanupLocation( $original ) {
 	if ( trim( $original ) === '' ) {
 		return '';

@@ -33,10 +33,14 @@ function parseHtml( $string ) {
 	$matches = [];
 	preg_match_all( '~<td>(.+)</td><td>(.*)</td>~sU', $string, $matches, PREG_SET_ORDER );
 
-	while ( ( $set = array_splice( $matches, 0, 6 ) ) !== [] ) {
-		$keys = $values = [];
+	while ( true ) {
+		$set = array_splice( $matches, 0, 6 );
+		if ( $set === [] ) {
+			break;
+		}
+
+		$values = [];
 		foreach ( $set as $k => $v ) {
-			$keys[$k] = $v[1];
 			$values[$k] = html_entity_decode( $v[2] );
 		}
 

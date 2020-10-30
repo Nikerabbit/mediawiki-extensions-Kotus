@@ -2,7 +2,7 @@
 /**
  * @author Niklas Laxström
  */
-
+// phpcs:ignore
 function parseEntry( array $entry ) {
 	$index = mb_strtoupper( mb_substr( $entry[0], 0, 1 ) );
 

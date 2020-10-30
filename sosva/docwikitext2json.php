@@ -8,8 +8,6 @@ $OUT = isset( $argv[2] ) ? $argv[2] : 'data.json';
 process( $IN, $OUT );
 
 function process( $IN, $OUT ) {
-	$all = [];
-
 	$all = parse( new SplFileObject( $IN ) );
 
 	$json = json_encode( $all, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
@@ -36,7 +34,7 @@ function parse( $lineIterator ) {
 			continue;
 		}
 
-		$ps = preg_quote( '<div style="margin-left:0.1972in;margin-right:0in;">_</div>', '~' );
+		$ps = preg_quote( '<div style="margin-left:0.1972in;margin-right:0;">_</div>', '~' );
 		$ps = str_replace( '_', '(.*)', $ps );
 		$line = preg_replace( "~^$ps$~", '\1', $line );
 		$line = str_replace( '&nbsp;', ' ', $line );
@@ -58,7 +56,6 @@ function parse( $lineIterator ) {
 			continue;
 		}
 
-		$expression = str_replace( "'", '', $match[2] );
 		$expression = $match[2];
 
 		$output[] = [
