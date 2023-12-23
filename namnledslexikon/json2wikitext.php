@@ -3,25 +3,25 @@
  * @author Niklas Laxström
  */
 
-$IN = isset( $argv[1] ) ? $argv[1] : 'data.json';
-$OUT = isset( $argv[2] ) ? $argv[2] : 'entrypages';
+$IN = $argv[1] ?? 'data.json';
+$OUT = $argv[2] ?? 'entrypages';
 process( $IN, $OUT );
 
-function parseEntry( $index, array $entry ) {
+function parseEntry( string $index, array $entry ): array {
 	return [ "Namnledslexikon:$index" => $entry ];
 }
 
-function formatEntry( array $entry ) {
-	list( $name, $description ) = $entry;
+function formatEntry( array $entry ): string {
+	[ $name, $description ] = $entry;
 
 	return <<<WIKITEXT
-== $name ==
-$description
+	== $name ==
+	$description
 
-WIKITEXT;
+	WIKITEXT;
 }
 
-function process( $IN, $OUT ) {
+function process( string $IN, string $OUT ): void {
 	is_dir( $OUT ) || mkdir( $OUT );
 	$data = json_decode( file_get_contents( $IN ), true );
 

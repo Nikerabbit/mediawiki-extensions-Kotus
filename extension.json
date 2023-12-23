@@ -1,6 +1,6 @@
 {
 	"name": "Kotus data set tools",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"author": [
 		"Niklas Laxström"
 	],
@@ -15,5 +15,5 @@
 			"vepsä/i18n"
 		]
 	},
-	"manifest_version": 1
+	"manifest_version": 2
 }

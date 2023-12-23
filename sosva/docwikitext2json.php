@@ -3,11 +3,11 @@
  * @author Niklas Laxström
  */
 
-$IN = isset( $argv[1] ) ? $argv[1] : 'voguli.txt';
-$OUT = isset( $argv[2] ) ? $argv[2] : 'data.json';
+$IN = $argv[1] ?? 'voguli.txt';
+$OUT = $argv[2] ?? 'data.json';
 process( $IN, $OUT );
 
-function process( $IN, $OUT ) {
+function process( string $IN, string $OUT ): void {
 	$all = parse( new SplFileObject( $IN ) );
 
 	$json = json_encode( $all, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
@@ -15,7 +15,7 @@ function process( $IN, $OUT ) {
 	echo "'_,_^\n";
 }
 
-function parse( $lineIterator ) {
+function parse( $lineIterator ): array {
 	$output = [];
 
 	$index = null;
@@ -27,7 +27,7 @@ function parse( $lineIterator ) {
 			continue;
 		}
 
-		if ( strpos( $line, 'text-align:center' ) !== false ) {
+		if ( str_contains( $line, 'text-align:center' ) ) {
 			$ps = '~^<div style=".+">(.+)</div>$~';
 			$line = preg_replace( $ps, '\1', $line );
 			$index = $line;

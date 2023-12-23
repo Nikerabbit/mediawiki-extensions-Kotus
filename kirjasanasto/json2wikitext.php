@@ -3,19 +3,17 @@
  * @author Niklas Laxström
  */
 
-$IN = isset( $argv[1] ) ? $argv[1] : 'data.json';
-$OUT = isset( $argv[2] ) ? $argv[2] : 'entrypages';
+$IN = $argv[1] ?? 'data.json';
+$OUT = $argv[2] ?? 'entrypages';
 process( $IN, $OUT );
 
-function parseEntry( array $entry ) {
+function parseEntry( array $entry ): array {
 	$index = $entry['index'];
 	return [ "Suomalais-venäläinen kirja-alan sanasto:$index" => $entry ];
 }
 
-function formatEntry( array $entry ) {
-	$fmt = '';
-
-	$fmt .= "=== {$entry['expression']} ===\n";
+function formatEntry( array $entry ): string {
+	$fmt = "=== {$entry['expression']} ===\n";
 
 	if ( isset( $entry['see'] ) ) {
 		$see = $entry['see'];
@@ -40,12 +38,12 @@ function formatEntry( array $entry ) {
 	return trim( $fmt ) . "\n";
 }
 
-function process( $IN, $OUT ) {
+function process( string $IN, string $OUT ): void {
 	is_dir( $OUT ) || mkdir( $OUT );
 	$data = json_decode( file_get_contents( $IN ), true );
 
 	$pages = [];
-	foreach ( $data as $index => $rawEntry ) {
+	foreach ( $data as $rawEntry ) {
 		foreach ( parseEntry( $rawEntry ) as $key => $value ) {
 			$pages[$key][] = $value;
 		}

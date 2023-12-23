@@ -3,11 +3,11 @@
  * @author Niklas Laxström
  */
 
-$IN = isset( $argv[1] ) ? $argv[1] : 'koulukeruu/html';
-$OUT = isset( $argv[2] ) ? $argv[2] : 'koulukeruu.json';
+$IN = $argv[1] ?? 'koulukeruu/html';
+$OUT = $argv[2] ?? 'koulukeruu.json';
 process( $IN, $OUT );
 
-function process( $IN, $OUT ) {
+function process( string $IN, string $OUT ): void {
 	$all = [];
 
 	$iter = new DirectoryIterator( $IN );
@@ -27,7 +27,7 @@ function process( $IN, $OUT ) {
 	echo "\n";
 }
 
-function parseHtml( $string ) {
+function parseHtml( string $string ): array {
 	$output = [];
 
 	$matches = [];

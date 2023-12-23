@@ -3,11 +3,11 @@
  * @author Niklas Laxström
  */
 
-$IN = isset( $argv[1] ) ? $argv[1] : 'ledlex';
-$OUT = isset( $argv[2] ) ? $argv[2] : 'data.json';
+$IN = $argv[1] ?? 'ledlex';
+$OUT = $argv[2] ?? 'data.json';
 process( $IN, $OUT );
 
-function process( $IN, $OUT ) {
+function process( string $IN, string $OUT ): void {
 	$all = [];
 
 	$iter = new DirectoryIterator( $IN );
@@ -28,25 +28,19 @@ function process( $IN, $OUT ) {
 	file_put_contents( $OUT, $json );
 }
 
-function parseIndex( $filename ) {
+function parseIndex( string $filename ): string {
 	$index = basename( $filename, '.php' );
-	switch ( $index ) {
-	case 'A1':
-		return 'Ä';
-	case 'O1':
-		return 'Ö';
-	case 'I':
-		return 'IJ';
-	case 'V':
-		return 'VYZ';
-	case 'A2':
-		return 'Å';
-	default:
-		return $index;
-	}
+	return match ( $index ) {
+		'A1' => 'Ä',
+		'O1' => 'Ö',
+		'I' => 'IJ',
+		'V' => 'VYZ',
+		'A2' => 'Å',
+		default => $index,
+	};
 }
 
-function parseHtml( $string ) {
+function parseHtml( string $string ): array {
 	$string = mb_convert_encoding( $string, 'UTF-8', 'ISO-8859-15' );
 	$string = preg_replace( '~\R~u', "\n", $string );
 

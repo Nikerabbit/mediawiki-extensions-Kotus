@@ -3,11 +3,11 @@
  * @author Niklas Laxström
  */
 
-$IN = isset( $argv[1] ) ? $argv[1] : 'julk9';
-$OUT = isset( $argv[2] ) ? $argv[2] : 'data.json';
+$IN = $argv[1] ?? 'julk9';
+$OUT = $argv[2] ?? 'data.json';
 process( $IN, $OUT );
 
-function process( $IN, $OUT ) {
+function process( string $IN, string $OUT ): void {
 	$all = [];
 
 	$iter = new DirectoryIterator( $IN );
@@ -24,7 +24,7 @@ function process( $IN, $OUT ) {
 	file_put_contents( $OUT, json_encode( $all, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) );
 }
 
-function parseHtml( $string ) {
+function parseHtml( string $string ): array {
 	$output = [];
 
 	$string = html_entity_decode( $string );
@@ -43,10 +43,10 @@ function parseHtml( $string ) {
 
 	$item = null;
 	foreach ( $matches as $match ) {
-		list( , $class, $content ) = $match;
+		[ , $class, $content ] = $match;
 
 		if ( $class === 'sisennys' ) {
-			list( $expression, $translation ) = explode( '* ', $content );
+			[ $expression, $translation ] = explode( '* ', $content );
 			$note = extractNote( $expression );
 
 			$item['subs'][] = [
@@ -67,7 +67,7 @@ function parseHtml( $string ) {
 		$content = trim( $content );
 
 		// ääni:
-		if ( substr( $content, -1 ) === ':' ) {
+		if ( str_ends_with( $content, ':' ) ) {
 			$item = [
 				'index' => $index,
 				'type' => 'aggregate',
@@ -97,7 +97,7 @@ function parseHtml( $string ) {
 			continue;
 		}
 
-		list( $expression, $translation ) = explode( ' * ', $content );
+		[ $expression, $translation ] = explode( ' * ', $content );
 		$note = extractNote( $expression );
 
 		$item = [
@@ -118,11 +118,11 @@ function parseHtml( $string ) {
 	return $output;
 }
 
-function cleanUpTranslation( $string ) {
+function cleanUpTranslation( string $string ): string {
 	return trim( mb_strtolower( $string ) );
 }
 
-function extractNote( &$string ) {
+function extractNote( string &$string ): string {
 	$string = trim( $string );
 	$ok = preg_match( '/^(.+) \((ks|luett|luok|sid\.mat)\.\)$/', $string, $matches );
 	if ( !$ok ) {

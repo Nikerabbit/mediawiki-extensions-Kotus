@@ -2,8 +2,26 @@
 /**
  * @author Niklas Laxström
  */
-// phpcs:ignore
-function cleanupLocation( $original ) {
+mkdir( 'entrypages' );
+$data = json_decode( file_get_contents( 'vepsa.json' ) );
+
+$pages = [];
+foreach ( $data as $rawEntry ) {
+	foreach ( parseEntry( $rawEntry ) as $key => $value ) {
+		$pages[$key][] = $value;
+	}
+}
+
+foreach ( $pages as $key => $entries ) {
+	$contents = '';
+	foreach ( $entries as $entry ) {
+		$contents .= formatEntry( $entry );
+	}
+
+	file_put_contents( "entrypages/$key", $contents );
+}
+
+function cleanupLocation( string $original ): string {
 	if ( trim( $original ) === '' ) {
 		return '';
 	}
@@ -54,7 +72,7 @@ function cleanupLocation( $original ) {
 	}
 }
 
-function parseEntry( array $entry ) {
+function parseEntry( array $entry ): array {
 	if ( $entry[0] === '10998' ) {
 		$entry = [ '10998', 'a', 'aлe₍ta', '-nen, -nou̯, -tau̯, ei̯ -ne Vil.; Kl.', '', '',
 			'aLeneškas (pogod)=alkoi tyyntyä, "aleta", mennä alas', '', 'Korjattu sanat-tuonnissa' ];
@@ -84,7 +102,7 @@ function parseEntry( array $entry ) {
 	return [ "Vepsä:$entry[0]" => $values ];
 }
 
-function formatEntry( array $entry ) {
+function formatEntry( array $entry ): string {
 	$fmt = "{{Vepsä\n";
 	foreach ( $entry as $k => $v ) {
 		$fmt .= "|$k=$v\n";
@@ -92,23 +110,4 @@ function formatEntry( array $entry ) {
 	$fmt .= "}}\n";
 
 	return $fmt;
-}
-
-mkdir( 'entrypages' );
-$data = json_decode( file_get_contents( 'vepsa.json' ) );
-
-$pages = [];
-foreach ( $data as $rawEntry ) {
-	foreach ( parseEntry( $rawEntry ) as $key => $value ) {
-		$pages[$key][] = $value;
-	}
-}
-
-foreach ( $pages as $key => $entries ) {
-	$contents = '';
-	foreach ( $entries as $entry ) {
-		$contents .= formatEntry( $entry );
-	}
-
-	file_put_contents( "entrypages/$key", $contents );
 }

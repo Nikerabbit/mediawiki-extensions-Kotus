@@ -2,9 +2,7 @@
 <ruleset>
 	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic"/>
-		<exclude name="MediaWiki.NamingConventions.PrefixedGlobalFunctions.wfPrefix"/>
-		<exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent"/>
-		<exclude name="PSR2.ControlStructures.SwitchDeclaration.TerminatingComment"/>
+		<exclude name="MediaWiki.NamingConventions.PrefixedGlobalFunctions.allowedPrefix"/>
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php"/>

@@ -3,17 +3,17 @@
  * @author Niklas Laxström
  */
 
-$IN = isset( $argv[1] ) ? $argv[1] : 'data.json';
-$OUT = isset( $argv[2] ) ? $argv[2] : 'entrypages';
+$IN = $argv[1] ?? 'data.json';
+$OUT = $argv[2] ?? 'entrypages';
 process( $IN, $OUT );
 
-function parseEntry( array $entry ) {
+function parseEntry( array $entry ): array {
 	// LU = Lexical Unit
-	list( $index, $id, $expression, $de, $fi, $page ) = $entry;
+	[ $index, $id, $expression, $de, $fi, $page ] = $entry;
 
 	if ( $id ) {
 		$id = "$expression ($id)";
-	} elseif ( strpos( $expression, '.' ) !== false ) {
+	} elseif ( str_contains( $expression, '.' ) ) {
 		// SMW does not allow dots in the first five characters
 		$id = str_replace( '.', '_', $expression );
 	}
@@ -31,7 +31,7 @@ function parseEntry( array $entry ) {
 	return [ "Sosva:$index" => $values ];
 }
 
-function formatEntry( array $entry ) {
+function formatEntry( array $entry ): string {
 	$fmt = "{{Sosva\n";
 	foreach ( $entry as $k => $v ) {
 		$fmt .= "|$k=$v\n";
@@ -41,12 +41,12 @@ function formatEntry( array $entry ) {
 	return $fmt;
 }
 
-function process( $IN, $OUT ) {
+function process( string $IN, string $OUT ): void {
 	is_dir( $OUT ) || mkdir( $OUT );
 	$data = json_decode( file_get_contents( $IN ), true );
 
 	$pages = [];
-	foreach ( $data as $index => $rawEntry ) {
+	foreach ( $data as $rawEntry ) {
 		foreach ( parseEntry( $rawEntry ) as $key => $value ) {
 			$pages[$key][] = $value;
 		}

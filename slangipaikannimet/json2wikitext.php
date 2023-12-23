@@ -2,8 +2,26 @@
 /**
  * @author Niklas Laxström
  */
-// phpcs:ignore
-function parseEntry( array $entry ) {
+is_dir( 'entrypages' ) || mkdir( 'entrypages' );
+$data = json_decode( file_get_contents( 'koulukeruu.json' ) );
+
+$pages = [];
+foreach ( $data as $rawEntry ) {
+	foreach ( parseEntry( $rawEntry ) as $key => $value ) {
+		$pages[$key][] = $value;
+	}
+}
+
+foreach ( $pages as $key => $entries ) {
+	$contents = '';
+	foreach ( $entries as $entry ) {
+		$contents .= formatEntry( $entry );
+	}
+
+	file_put_contents( "entrypages/$key", $contents );
+}
+
+function parseEntry( array $entry ): array {
 	$index = mb_strtoupper( mb_substr( $entry[0], 0, 1 ) );
 
 	if ( !preg_match( '/[A-ZÅÄÖ]/', $index ) ) {
@@ -24,7 +42,7 @@ function parseEntry( array $entry ) {
 	return [ "Slangipaikannimet:$entry[5]" => $values ];
 }
 
-function formatEntry( array $entry ) {
+function formatEntry( array $entry ): string {
 	$fmt = "{{Slangipaikannimet\n";
 	foreach ( $entry as $k => $v ) {
 		$fmt .= "|$k=$v\n";
@@ -32,23 +50,4 @@ function formatEntry( array $entry ) {
 	$fmt .= "}}\n";
 
 	return $fmt;
-}
-
-is_dir( 'entrypages' ) || mkdir( 'entrypages' );
-$data = json_decode( file_get_contents( 'koulukeruu.json' ) );
-
-$pages = [];
-foreach ( $data as $rawEntry ) {
-	foreach ( parseEntry( $rawEntry ) as $key => $value ) {
-		$pages[$key][] = $value;
-	}
-}
-
-foreach ( $pages as $key => $entries ) {
-	$contents = '';
-	foreach ( $entries as $entry ) {
-		$contents .= formatEntry( $entry );
-	}
-
-	file_put_contents( "entrypages/$key", $contents );
 }
