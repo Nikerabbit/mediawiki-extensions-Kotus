@@ -15,7 +15,7 @@ function process( string $IN, string $OUT ): void {
 	echo "'_,_^\n";
 }
 
-function parse( $lineIterator ): array {
+function parse( iterable $lineIterator ): array {
 	$output = [];
 
 	$index = null;

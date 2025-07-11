@@ -27,7 +27,7 @@ while ( $line !== false ) {
 
 file_put_contents( $OUT, json_encode( $all, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) );
 
-function tokenize( $string ) {
+function tokenize( string $string ): array {
 	$entries = [];
 	$itemStack = [];
 	$charStack = '';
