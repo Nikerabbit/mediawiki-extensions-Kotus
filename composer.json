@@ -5,7 +5,7 @@
 	"homepage": "https://github.com/Nikerabbit/mediawiki-extensions-Kotus",
 	"authors": [
 		{
-			"name": "Niklas Laxström",
+			"name": "Niklas Laxstr\u00f6m",
 			"email": "niklas.laxstrom@gmail.com",
 			"role": "Author"
 		}
@@ -30,6 +30,13 @@
 	"config": {
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"platform": {
+			"php": "8.3.0"
 		}
+	},
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=8.3"
 	}
 }
