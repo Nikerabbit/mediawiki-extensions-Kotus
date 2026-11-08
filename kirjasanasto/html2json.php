@@ -57,6 +57,7 @@ function parseHtml( string $string ): array {
 			if ( $note ) {
 				$item['note'] = $note;
 			}
+
 			continue;
 		}
 

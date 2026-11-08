@@ -29,6 +29,7 @@ function cleanupLocation( string $original ): string {
 	# Sometimes they use comma or colon instead of semicolon
 	$string = strtr( $original, ':', ';' );
 	$string = strtr( $string, ',', ';' );
+
 	$locations = explode( ';', $string );
 
 	// Using separate loop because PHP does not like unsetting stuff
@@ -67,9 +68,9 @@ function cleanupLocation( string $original ): string {
 	$normalized = implode( '; ', $locations );
 	if ( $normalized === $original ) {
 		return '';
-	} else {
-		return $normalized;
 	}
+
+	return $normalized;
 }
 
 function parseEntry( array $entry ): array {
@@ -107,6 +108,7 @@ function formatEntry( array $entry ): string {
 	foreach ( $entry as $k => $v ) {
 		$fmt .= "|$k=$v\n";
 	}
+
 	$fmt .= "}}\n";
 
 	return $fmt;

@@ -44,10 +44,11 @@ function tokenize( string $string ): array {
 				} else {
 					exit( 'Parse error: ' . $state );
 				}
+
 				break;
 
 			case 'BEGIN-ENTRY':
-				if ( $c === '\'' ) {
+				if ( $c === "'" ) {
 					$state = 'BEGIN-ITEM';
 				} elseif ( ctype_digit( $c ) ) {
 					$charStack .= $c;
@@ -55,16 +56,18 @@ function tokenize( string $string ): array {
 				} else {
 					exit( 'Parse error: ' . $state );
 				}
+
 				break;
 
 			case 'BEGIN-ITEM':
-				if ( $c === '\'' && $string[ $i - 1 ] !== '\\' ) {
+				if ( $c === "'" && $string[ $i - 1 ] !== '\\' ) {
 					$itemStack[] = $charStack;
 					$charStack = '';
 					$state = 'END-ITEM';
 				} elseif ( $c !== '\\' ) {
 					$charStack .= $c;
 				}
+
 				break;
 
 			case 'ITEM-NUMBER':
@@ -88,6 +91,7 @@ function tokenize( string $string ): array {
 				} else {
 					exit( 'Parse error: ' . $state );
 				}
+
 				break;
 
 			case 'END-ENTRY':
@@ -98,6 +102,7 @@ function tokenize( string $string ): array {
 				} else {
 					exit( 'Parse error: ' . $state );
 				}
+
 				break;
 
 			default:

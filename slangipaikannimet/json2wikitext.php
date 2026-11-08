@@ -2,7 +2,10 @@
 /**
  * @author Niklas Laxström
  */
-is_dir( 'entrypages' ) || mkdir( 'entrypages' );
+if ( !is_dir( 'entrypages' ) ) {
+	mkdir( 'entrypages' );
+}
+
 $data = json_decode( file_get_contents( 'koulukeruu.json' ) );
 
 $pages = [];
@@ -47,6 +50,7 @@ function formatEntry( array $entry ): string {
 	foreach ( $entry as $k => $v ) {
 		$fmt .= "|$k=$v\n";
 	}
+
 	$fmt .= "}}\n";
 
 	return $fmt;
